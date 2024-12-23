@@ -31,17 +31,15 @@ jobs:
           sudo apt-get update -q
           sudo apt-get install -qqy build-essential software-properties-common pkg-config wget libpcsclite-dev
 
-      - name: Build for mcos
+      - name: Build for macos 64
         if: matrix.os == 'macos-latest'
         run: |
-          make build/awsu-darwin-amd64
-          mv build/awsu-darwin-amd64 build/awsu-macos-latest-amd64
+          env GOOS=darwin GOARCH=amd64 go build
 
-      - name: Build linux
+      - name: Build linux64
         if: matrix.os == 'ubuntu-latest'
         run: |
-          make build/awsu-linux-amd64
-          mv build/awsu-linux-amd64 build/awsu-ubuntu-latest-amd64
+          env GOOS=linux GOARCH=amd64 go build
 
       - name: List files
         run: |
