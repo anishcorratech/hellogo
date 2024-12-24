@@ -46,3 +46,63 @@ jobs:
                 release_name: ${{ steps.version.outputs.version }}
                 tag_name: ${{ github.ref }}
                 body: Changes
+
+            - name: upload Linux AMD64 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-linux-amd64
+                asset_name: hellogo-linux-amd64
+                asset_content_type: application/zip
+
+            - name: upload Linux Intel32 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-linux-i386
+                asset_name: hellogo-linux-i386
+                asset_content_type: application/zip
+
+            - name: upload MacOS AMD64 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-darwin-amd64
+                asset_name: hellogo-darwin-amd64
+                asset_content_type: application/zip
+
+            - name: upload MacOS ARM64 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-darwin-arm64
+                asset_name: hellogo-darwin-arm64
+                asset_content_type: application/zip
+
+            - name: upload Windows Intel32 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-windows-32bit
+                asset_name: hellogo-windows-32bit
+                asset_content_type: application/zip
+
+            - name: upload Windows AMD64 artifacts
+              uses: actions/upload-release-asset@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                upload_url: ${{ steps.create_release.outputs.upload_url }}
+                asset_path: ./hellogo-windows-64bit
+                asset_name: hellogo-windows-64bit
+                asset_content_type: application/zip
