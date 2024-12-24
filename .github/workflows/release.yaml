@@ -46,5 +46,4 @@ jobs:
                 prerelease: false
                 release_name: ${{ steps.version.outputs.version }}
                 tag_name: ${{ github.ref }}
-                body: |
-                  Changes
+                body: Changes
