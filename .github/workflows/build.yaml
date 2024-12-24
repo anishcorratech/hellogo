@@ -44,3 +44,19 @@ jobs:
       - name: List files
         run: |
           ls -lifH
+
+      - name: version
+        run: echo "$(date +"%Y-%m-%d_%H-%M-%S")"
+        id: version
+
+      - name: release
+        uses: actions/create-release@v2
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
