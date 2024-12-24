@@ -1,0 +1,52 @@
+name: "Release"
+
+on:
+    push:
+        tags:
+            - '*'
+
+jobs:
+    release:
+        name: "Release"
+        permissions: write-all
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Set up Go
+              uses: actions/setup-go@v2
+              with:
+                go-version: 1.22
+
+            - name: build
+              # Ref: https://www.digitalocean.com/community/tutorials/how-to-build-go-executables-for-multiple-platforms-on-ubuntu-16-04
+              env GOOS=linux GOARCH=amd64 go build -o hellogo-linux-amd64
+              env GOOS=linux GOARCH=386 go build -o hellogo-linux-i386
+              env GOOS=darwin GOARCH=amd64 go build -o hellogo-darwin-amd64
+              env GOOS=darwin GOARCH=arm go build -o hellogo-darwin-arm
+              env GOOS=darwin GOARCH=arm64 go build -o hellogo-darwin-arm64
+              env GOOS=windows GOARCH=386 go build -o hellogo-windows-32bit
+              env GOOS=windows GOARCH=amd64 go build -o hellogo-windows-64bit
+
+            - name: version
+              run: echo "${GITHUB_REF#refs/*/}"
+              id: version
+
+            - name: release
+              uses: actions/create-release@v1
+              id: create_release
+              with:
+                draft: false
+                prerelease: false
+                release_name: ${{ steps.version.outputs.version }}
+                tag_name: ${{ github.ref }}
+                body: |
+                  Changes:
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              
+              
