@@ -53,6 +53,6 @@ jobs:
       - name: artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: hellogo-${{ matrix.os }}.${{ steps.version.outputs.version }}
+          name: hellogo-${{ matrix.os }}
           path: hellogo
           overwrite: true
