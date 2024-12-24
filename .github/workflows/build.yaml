@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     name: "Build Go Binaries"
+    permissions: write-all
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
