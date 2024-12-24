@@ -27,7 +27,6 @@ jobs:
                 env GOOS=linux GOARCH=amd64 go build -o hellogo-linux-amd64
                 env GOOS=linux GOARCH=386 go build -o hellogo-linux-i386
                 env GOOS=darwin GOARCH=amd64 go build -o hellogo-darwin-amd64
-                env GOOS=darwin GOARCH=arm go build -o hellogo-darwin-arm
                 env GOOS=darwin GOARCH=arm64 go build -o hellogo-darwin-arm64
                 env GOOS=windows GOARCH=386 go build -o hellogo-windows-32bit
                 env GOOS=windows GOARCH=amd64 go build -o hellogo-windows-64bit
