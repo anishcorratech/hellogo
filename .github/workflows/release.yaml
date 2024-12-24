@@ -23,7 +23,6 @@ jobs:
                 go-version: 1.22
 
             - name: build
-              # Ref: https://www.digitalocean.com/community/tutorials/how-to-build-go-executables-for-multiple-platforms-on-ubuntu-16-04
               run: |
                 env GOOS=linux GOARCH=amd64 go build -o hellogo-linux-amd64
                 env GOOS=linux GOARCH=386 go build -o hellogo-linux-i386
