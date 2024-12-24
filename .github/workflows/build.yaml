@@ -50,14 +50,9 @@ jobs:
         run: echo "$(date +"%Y-%m-%d_%H-%M-%S")"
         id: version
 
-      - name: release
-        uses: actions/create-release@v1
-        id: create_release
+      - name: artifacts
+        uses: actions/upload-artifact@v4
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: v${{ steps.version.outputs.version }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: hellogo-${{ matrix.os }}.${{ steps.version.outputs.version }}
+          path: hellogo
+          overwrite: true
