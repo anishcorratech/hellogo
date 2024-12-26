@@ -1,5 +1,6 @@
 # hellogo
-Hello Go
+
+Hello Go is an attempt to demonstrate the use of github actions to cross-compile and build binary executables for other OS and processor architecture.
 
 
 ## URL
